@@ -30,9 +30,13 @@ describe('PlayerView', function() {
     it('dequeues a song when finished playing & plays the next song', function(){
       library.at(0).play();
       var originalSong = appView.playerView.model;
+      console.log(originalSong);
       appView.model.get('songQueue').add(library.at(1));
+      console.log(appView.model.get('songQueue'));
       // Simulate a song end event being triggered
       $(appView.playerView.el).trigger('ended');
+      console.log(appView.model.get('songQueue'));
+      console.log(appView.playerView.model);
       expect(appView.playerView.model).to.not.equal(originalSong);
     });
   });
